@@ -1,0 +1,103 @@
+name: Build CraftCalc Portable
+
+
+on:
+
+  workflow_dispatch:
+
+
+
+jobs:
+
+
+  build:
+
+
+    runs-on: windows-latest
+
+
+
+    steps:
+
+
+    # Récupération du projet
+
+    - name: Checkout repository
+
+      uses: actions/checkout@v4
+
+
+
+    # Installation Python
+
+    - name: Setup Python
+
+      uses: actions/setup-python@v5
+
+      with:
+
+        python-version: "3.12"
+
+
+
+    # Installation dépendances
+
+    - name: Install dependencies
+
+      run: |
+
+        python -m pip install --upgrade pip
+
+        pip install -r requirements.txt
+
+
+
+    # Compilation EXE
+
+    - name: Build EXE
+
+      run: |
+
+        pyinstaller ^
+          --onefile ^
+          --windowed ^
+          --name CraftCalc ^
+          main.py
+
+
+
+    # Copie des données
+
+    - name: Add data files
+
+      run: |
+
+        mkdir dist\data
+
+        copy data\items.csv dist\data\
+
+        copy data\recettes.csv dist\data\
+
+
+
+    # Création ZIP portable
+
+    - name: Create portable ZIP
+
+      run: |
+
+        Compress-Archive -Path dist\* -DestinationPath CraftCalc_Portable.zip
+
+
+
+    # Mise à disposition
+
+    - name: Upload artifact
+
+      uses: actions/upload-artifact@v4
+
+      with:
+
+        name: CraftCalc_Portable
+
+        path: CraftCalc_Portable.zip
