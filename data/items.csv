@@ -1,0 +1,26 @@
+id;nom;type
+1;Bois;Ressource
+2;Pierre;Ressource
+3;Fibre;Ressource
+4;Branche;Ressource
+5;Silex;Ressource
+6;Corde;Materiau
+7;Planche;Materiau
+8;Bâton;Materiau
+9;Charbon;Ressource
+10;Minerai de fer;Minerai
+11;Lingot de fer;Materiau
+12;Hache en pierre;Outil
+13;Pioche en pierre;Outil
+14;Marteau;Outil
+15;Feu de camp;Structure
+16;Torche;Outil
+17;Lance;Arme
+18;Épée en fer;Arme
+19;Arc;Arme
+20;Flèche;Munition
+21;Maison simple;Structure
+22;Établi;Structure
+23;Four;Structure
+24;Verre;Materiau
+25;Potion de soin;Consommable
