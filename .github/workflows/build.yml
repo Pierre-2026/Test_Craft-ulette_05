@@ -40,7 +40,7 @@ jobs:
 
 
 
-    # Installation dépendances
+    # Installation des dépendances
 
     - name: Install dependencies
 
@@ -52,21 +52,19 @@ jobs:
 
 
 
-    # Compilation EXE
+    # Compilation de l'application
+
+    # Syntaxe compatible PowerShell GitHub Actions
 
     - name: Build EXE
 
       run: |
 
-        pyinstaller ^
-          --onefile ^
-          --windowed ^
-          --name CraftCalc ^
-          main.py
+        pyinstaller --onefile --windowed --name CraftCalc main.py
 
 
 
-    # Copie des données
+    # Ajout des fichiers externes nécessaires
 
     - name: Add data files
 
@@ -74,13 +72,13 @@ jobs:
 
         mkdir dist\data
 
-        copy data\items.csv dist\data\
+        Copy-Item data\items.csv dist\data\
 
-        copy data\recettes.csv dist\data\
+        Copy-Item data\recettes.csv dist\data\
 
 
 
-    # Création ZIP portable
+    # Création archive portable
 
     - name: Create portable ZIP
 
@@ -90,7 +88,7 @@ jobs:
 
 
 
-    # Mise à disposition
+    # Publication du fichier compilé
 
     - name: Upload artifact
 
